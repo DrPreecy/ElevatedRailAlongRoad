@@ -1,0 +1,9 @@
+1. Extract/open this folder in VS Code.
+2. Give Codex the whole folder as its working repository.
+3. Open `CODEX_PROMPT.md`.
+4. Paste its full contents into Codex.
+5. Let Codex start with Task 1 only.
+6. Do not ask it to build the whole mod in one shot.
+
+The intended MVP is intentionally narrow:
+existing road geometry -> separate elevated rail above it.

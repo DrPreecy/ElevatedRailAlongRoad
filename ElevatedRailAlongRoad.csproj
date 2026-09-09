@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>ElevatedRailAlongRoad</RootNamespace>
+    <AssemblyName>ElevatedRailAlongRoad</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--
+      Set CS1_MANAGED_DIR to your Cities: Skylines\Cities_Data\Managed directory.
+      Example on Windows PowerShell:
+      $env:CS1_MANAGED_DIR="C:\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed"
+    -->
+    <CS1ManagedDir Condition="'$(CS1_MANAGED_DIR)' != ''">$(CS1_MANAGED_DIR)</CS1ManagedDir>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(CS1ManagedDir)' != ''">
+    <Reference Include="ICities">
+      <HintPath>$(CS1ManagedDir)\ICities.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(CS1ManagedDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ColossalManaged">
+      <HintPath>$(CS1ManagedDir)\ColossalManaged.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(CS1ManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+  </ItemGroup>
+
+  <Target Name="ValidateCs1ManagedDir" BeforeTargets="ResolveReferences">
+    <Error
+      Condition="'$(CS1ManagedDir)' == ''"
+      Text="CS1_MANAGED_DIR is required. Set it to the Cities: Skylines Cities_Data\Managed directory, for example: E:\SteamLibrary\steamapps\common\Cities_Skylines\Cities_Data\Managed." />
+    <Error
+      Condition="'$(CS1ManagedDir)' != '' And !Exists('$(CS1ManagedDir)\ICities.dll')"
+      Text="ICities.dll was not found in CS1_MANAGED_DIR: $(CS1ManagedDir)" />
+    <Error
+      Condition="'$(CS1ManagedDir)' != '' And !Exists('$(CS1ManagedDir)\Assembly-CSharp.dll')"
+      Text="Assembly-CSharp.dll was not found in CS1_MANAGED_DIR: $(CS1ManagedDir)" />
+    <Error
+      Condition="'$(CS1ManagedDir)' != '' And !Exists('$(CS1ManagedDir)\ColossalManaged.dll')"
+      Text="ColossalManaged.dll was not found in CS1_MANAGED_DIR: $(CS1ManagedDir)" />
+    <Error
+      Condition="'$(CS1ManagedDir)' != '' And !Exists('$(CS1ManagedDir)\UnityEngine.dll')"
+      Text="UnityEngine.dll was not found in CS1_MANAGED_DIR: $(CS1ManagedDir)" />
+  </Target>
+</Project>

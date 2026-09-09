@@ -1,0 +1,19 @@
+{
+  "presets": [
+    {
+      "name": "Centered Elevated Rail",
+      "heightMeters": 12.0,
+      "horizontalOffsetMeters": 0.0
+    },
+    {
+      "name": "Offset Elevated Rail",
+      "heightMeters": 12.0,
+      "horizontalOffsetMeters": 6.0
+    },
+    {
+      "name": "High Urban Viaduct",
+      "heightMeters": 16.0,
+      "horizontalOffsetMeters": 0.0
+    }
+  ]
+}
